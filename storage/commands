@@ -1,0 +1,8 @@
+CSI_VOL=$(oc describe pv/`oc get pv | grep default/rhel8-ocs | awk '{print $1}'` | grep imageName | sed 's/ //g' | awk -F "=" '{print $2}')
+
+echo $CSI_VOL
+
+oc exec -it -n openshift-storage $(oc get pods -n openshift-storage | awk '/tools/ {print $1;}') -- rbd info $CSI_VOL --pool=ocs-storagecluster-cephblockpool
+
+
+oc exec -it -n openshift-storage $(oc get pods -n openshift-storage | awk '/tools/ {print $1;}') --  rbd disk-usage $CSI_VOL --pool=ocs-storagecluster-cephblockpool

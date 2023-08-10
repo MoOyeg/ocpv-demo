@@ -1,0 +1,8 @@
+resources:
+ - namespace.yaml
+ - ../test_keys
+ - vm1.yaml
+ - vm2.yaml
+ - service.yaml
+ - route.yaml
+namespace: vm-secret-password-test

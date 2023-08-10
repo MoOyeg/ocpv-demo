@@ -1,0 +1,238 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  annotations:
+    kubemacpool.io/transaction-timestamp: '2023-08-07T21:55:20.290113755Z'
+    kubevirt.io/latest-observed-api-version: v1
+    kubevirt.io/storage-observed-api-version: v1alpha3
+    name.os.template.kubevirt.io/centos8: CentOS 8 or higher
+    openshift.io/display-name: MongoDB Virtual Machine
+  resourceVersion: '484943'
+  name: mongodb-nationalparks
+  uid: 12d389bc-d142-49ea-876f-a52b2b571fb2
+  creationTimestamp: '2023-08-07T21:55:20Z'
+  generation: 1
+  managedFields:
+    - apiVersion: kubevirt.io/v1alpha3
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:kubevirt.io/latest-observed-api-version': {}
+            'f:kubevirt.io/storage-observed-api-version': {}
+      manager: Go-http-client
+      operation: Update
+      time: '2023-08-07T21:55:20Z'
+    - apiVersion: kubevirt.io/v1alpha3
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:conditions': {}
+          'f:printableStatus': {}
+          'f:volumeSnapshotStatuses': {}
+      manager: Go-http-client
+      operation: Update
+      subresource: status
+      time: '2023-08-07T21:55:20Z'
+    - apiVersion: kubevirt.io/v1alpha3
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:name.os.template.kubevirt.io/centos8': {}
+            'f:openshift.io/display-name': {}
+          'f:labels':
+            'f:vm.kubevirt.io/name': {}
+            'f:app': {}
+            .: {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:workload.template.kubevirt.io/server': {}
+            'f:os.template.kubevirt.io/centos8': {}
+            'f:flavor.template.kubevirt.io/small': {}
+            'f:kubevirt.io/size': {}
+            'f:kubevirt.io/domain': {}
+            'f:template.openshift.io/template-instance-owner': {}
+        'f:spec':
+          .: {}
+          'f:dataVolumeTemplates': {}
+          'f:running': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:annotations':
+                .: {}
+                'f:vm.kubevirt.io/flavor': {}
+                'f:vm.kubevirt.io/os': {}
+                'f:vm.kubevirt.io/workload': {}
+              'f:labels':
+                .: {}
+                'f:flavor.template.kubevirt.io/small': {}
+                'f:kubevirt.io/domain': {}
+                'f:kubevirt.io/size': {}
+                'f:os.template.kubevirt.io/centos8': {}
+                'f:vm.kubevirt.io/name': {}
+                'f:workload.template.kubevirt.io/server': {}
+            'f:spec':
+              .: {}
+              'f:domain':
+                .: {}
+                'f:cpu':
+                  .: {}
+                  'f:cores': {}
+                  'f:sockets': {}
+                  'f:threads': {}
+                'f:devices':
+                  .: {}
+                  'f:disks': {}
+                  'f:interfaces': {}
+                  'f:networkInterfaceMultiqueue': {}
+                  'f:rng': {}
+                'f:machine':
+                  .: {}
+                  'f:type': {}
+                'f:resources':
+                  .: {}
+                  'f:requests':
+                    .: {}
+                    'f:memory': {}
+              'f:evictionStrategy': {}
+              'f:hostname': {}
+              'f:networks': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:volumes': {}
+      manager: openshift-controller-manager
+      operation: Update
+      time: '2023-08-07T21:55:20Z'
+  namespace: parksmap-demo
+  labels:
+    app: mongodb
+    kubevirt.io/domain: mongodb-nationalparks
+    app.kubernetes.io/part-of: workshop
+    os.template.kubevirt.io/centos8: 'true'
+    flavor.template.kubevirt.io/small: 'true'
+    template.openshift.io/template-instance-owner: 55c66628-c3d5-44a2-81b8-82a05b9e806c
+    workload.template.kubevirt.io/server: 'true'
+    kubevirt.io/size: small
+    vm.kubevirt.io/name: mongodb-nationalparks
+spec:
+  dataVolumeTemplates:
+    - apiVersion: cdi.kubevirt.io/v1alpha1
+      kind: DataVolume
+      metadata:
+        creationTimestamp: null
+        name: mongodb-nationalparks-rootdisk
+      spec:
+        pvc:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 20Gi
+          storageClassName: ocs-storagecluster-ceph-rbd
+          volumeMode: Block
+        source:
+          pvc:
+            name: centos8
+            namespace: openshift-virtualization-os-images
+  running: true
+  template:
+    metadata:
+      annotations:
+        vm.kubevirt.io/flavor: small
+        vm.kubevirt.io/os: centos8
+        vm.kubevirt.io/workload: server
+      creationTimestamp: null
+      labels:
+        flavor.template.kubevirt.io/small: 'true'
+        kubevirt.io/domain: mongodb-nationalparks
+        kubevirt.io/size: small
+        os.template.kubevirt.io/centos8: 'true'
+        vm.kubevirt.io/name: mongodb-nationalparks
+        workload.template.kubevirt.io/server: 'true'
+    spec:
+      domain:
+        cpu:
+          cores: 1
+          sockets: 1
+          threads: 1
+        devices:
+          disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: mongodb-nationalparks-rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - macAddress: '02:49:86:00:00:05'
+              masquerade: {}
+              model: virtio
+              name: nic-0
+          networkInterfaceMultiqueue: true
+          rng: {}
+        machine:
+          type: pc-q35-rhel8.4.0
+        resources:
+          requests:
+            memory: 2Gi
+      evictionStrategy: LiveMigrate
+      hostname: mongodb-nationalparks
+      networks:
+        - name: nic-0
+          pod: {}
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - dataVolume:
+            name: mongodb-nationalparks-rootdisk
+          name: mongodb-nationalparks-rootdisk
+        - cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              user: redhat
+              password: openshift
+              chpasswd: { expire: False }
+              yum_repos:
+                mongodb-org-3.6:
+                  baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.6/x86_64/
+                  enabled: true
+                  gpgcheck: true
+                  gpgkey: https://www.mongodb.org/static/pgp/server-3.6.asc
+                  name: MongoDB Repository
+              packages:
+                - bash-completion
+                - mongodb-org
+              runcmd:
+                - systemctl daemon-reload
+                - systemctl enable mongod.service
+                - systemctl start mongod.service
+                - >
+                  mongo admin --host localhost --eval "db.createUser({user: 'root', pwd: 'mongodb', roles: [{role: 'root', db: 'admin'}]});"
+                - >
+                  mongo admin --host localhost --eval "db.getSiblingDB('mongodb').createUser({user: 'mongodb', pwd: 'mongodb', roles: [{role: 'dbOwner', db: 'mongodb'}]});"
+                - >
+                  sed -i -e 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
+                - >
+                  sed -i -e 's/^#security:/security:/g' /etc/mongod.conf
+                - >
+                  sed -i -e '/^security:/a \  authorization: enabled' /etc/mongod.conf
+                - systemctl restart mongod.service
+          name: cloudinitdisk
+status:
+  conditions:
+    - lastProbeTime: '2023-08-07T21:55:21Z'
+      lastTransitionTime: '2023-08-07T21:55:21Z'
+      message: VMI does not exist
+      reason: VMINotExists
+      status: 'False'
+      type: Ready
+  printableStatus: Stopped
+  volumeSnapshotStatuses:
+    - enabled: true
+      name: mongodb-nationalparks-rootdisk
+    - enabled: false
+      name: cloudinitdisk
+      reason: 'Snapshot is not supported for this volumeSource type [cloudinitdisk]'

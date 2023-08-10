@@ -1,0 +1,8 @@
+apiVersion: nodemaintenance.medik8s.io/v1beta1
+
+kind: NodeMaintenance
+metadata:
+  name: worker-maintenance
+spec:
+  nodeName: CHANGE_ME
+  reason: "Worker Maintenance"

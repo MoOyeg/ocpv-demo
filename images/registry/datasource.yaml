@@ -1,0 +1,11 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataSource
+metadata:
+  labels:
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/managed-by: cdi-controller
+    app.kubernetes.io/part-of: hyperconverged-cluster
+    app.kubernetes.io/version: 4.12.5
+    cdi.kubevirt.io/dataImportCron: datasource-centos-stream9-import-cron
+  name: datasource-centos-stream9
+spec: {}

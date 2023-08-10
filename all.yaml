@@ -1,0 +1,2345 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.129.2.56"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.129.2.56"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.name: mlbparks
+      openshift.io/deployment.name: mlbparks-1
+      openshift.io/scc: restricted-v2
+      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      openshift.io/deployer-pod-for.name: mlbparks-1
+    name: mlbparks-1-deploy
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: v1
+      kind: ReplicationController
+      name: mlbparks-1
+      uid: c1e05508-c2c0-43f8-b247-2ff722a3823c
+    resourceVersion: "518382"
+    uid: 536bcd4e-7495-4c82-815f-acfd61a77168
+  spec:
+    activeDeadlineSeconds: 21600
+    containers:
+    - env:
+      - name: OPENSHIFT_DEPLOYMENT_NAME
+        value: mlbparks-1
+      - name: OPENSHIFT_DEPLOYMENT_NAMESPACE
+        value: parksmap-demo
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f1d08a4fed20e6f9fe569f173fc039a6cc6e5f7875566e1b3a4c5cddcbf0c827
+      imagePullPolicy: IfNotPresent
+      name: deployment
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 1000750000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-xdlsf
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: deployer-dockercfg-4xnd6
+    nodeName: ocp4-worker1.aio.example.com
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Never
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000750000
+      seLinuxOptions:
+        level: s0:c27,c24
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: deployer
+    serviceAccountName: deployer
+    shareProcessNamespace: false
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-xdlsf
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:51Z"
+      reason: PodCompleted
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:45Z"
+      reason: PodCompleted
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:45Z"
+      reason: PodCompleted
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:50Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://f83914c19f5ce85c7a1d10150137436052ab248135b2936b8c8cb4b17d39034f
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f1d08a4fed20e6f9fe569f173fc039a6cc6e5f7875566e1b3a4c5cddcbf0c827
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f1d08a4fed20e6f9fe569f173fc039a6cc6e5f7875566e1b3a4c5cddcbf0c827
+      lastState: {}
+      name: deployment
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: cri-o://f83914c19f5ce85c7a1d10150137436052ab248135b2936b8c8cb4b17d39034f
+          exitCode: 0
+          finishedAt: "2023-08-07T22:23:44Z"
+          reason: Completed
+          startedAt: "2023-08-07T22:22:53Z"
+    hostIP: 192.168.123.104
+    phase: Succeeded
+    podIP: 10.129.2.56
+    podIPs:
+    - ip: 10.129.2.56
+    qosClass: BestEffort
+    startTime: "2023-08-07T22:22:51Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.2.55"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.2.55"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: mlbparks
+      openshift.io/deployment.name: mlbparks-1
+      openshift.io/scc: restricted-v2
+      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    creationTimestamp: "2023-08-07T22:22:53Z"
+    generateName: mlbparks-1-
+    labels:
+      app: workshop
+      component: mlbparks
+      deployment: mlbparks-1
+      deploymentConfig: mlbparks
+      deploymentconfig: mlbparks
+      role: database
+    name: mlbparks-1-jp5qt
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: mlbparks-1
+      uid: c1e05508-c2c0-43f8-b247-2ff722a3823c
+    resourceVersion: "518313"
+    uid: 74f341f7-83d3-465b-9d99-9f6fc12a0542
+  spec:
+    containers:
+    - env:
+      - name: KUBERNETES_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
+      - name: OPENSHIFT_KUBE_PING_LABELS
+        value: component=mlbparks
+      - name: OPENSHIFT_KUBE_PING_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
+      - name: DB_PORT
+        value: "27017"
+      - name: DB_HOST
+        value: mongodb-mlbparks
+      - name: DB_USERNAME
+        value: mongodb
+      - name: DB_PASSWORD
+        value: mongodb
+      - name: DB_NAME
+        value: mongodb
+      image: quay.io/erkanercan/mlbparks:latest
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ws/healthz/
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      name: mlbparks
+      ports:
+      - containerPort: 8787
+        name: debug
+        protocol: TCP
+      - containerPort: 8778
+        name: jolokia
+        protocol: TCP
+      - containerPort: 8080
+        name: http
+        protocol: TCP
+      - containerPort: 8888
+        name: ping
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ws/healthz/
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 20
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 1000750000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-8k622
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-wt4qm
+    nodeName: ocp4-worker3.aio.example.com
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000750000
+      seLinuxOptions:
+        level: s0:c27,c24
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-8k622
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:53Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:44Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:44Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:53Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://fab2618b9c407da5cbc5dc02d0ab45b5da945dd2713fa7cba97f6cb0c4068553
+      image: quay.io/erkanercan/mlbparks:latest
+      imageID: quay.io/erkanercan/mlbparks@sha256:2fd11e7a47d39b6629b2bdebec0fef28569264f81bce0ecc261b7ef6e111b908
+      lastState: {}
+      name: mlbparks
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2023-08-07T22:23:16Z"
+    hostIP: 192.168.123.106
+    phase: Running
+    podIP: 10.128.2.55
+    podIPs:
+    - ip: 10.128.2.55
+    qosClass: BestEffort
+    startTime: "2023-08-07T22:22:53Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.129.2.57"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.129.2.57"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.name: nationalparks
+      openshift.io/deployment.name: nationalparks-1
+      openshift.io/scc: restricted-v2
+      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      openshift.io/deployer-pod-for.name: nationalparks-1
+    name: nationalparks-1-deploy
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: v1
+      kind: ReplicationController
+      name: nationalparks-1
+      uid: bc98d2c3-34e7-433b-9f2c-914f1a93f0a5
+    resourceVersion: "518355"
+    uid: e54bae23-3a70-4a75-9ca7-5539d19bb746
+  spec:
+    activeDeadlineSeconds: 21600
+    containers:
+    - env:
+      - name: OPENSHIFT_DEPLOYMENT_NAME
+        value: nationalparks-1
+      - name: OPENSHIFT_DEPLOYMENT_NAMESPACE
+        value: parksmap-demo
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f1d08a4fed20e6f9fe569f173fc039a6cc6e5f7875566e1b3a4c5cddcbf0c827
+      imagePullPolicy: IfNotPresent
+      name: deployment
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 1000750000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rlcx2
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: deployer-dockercfg-4xnd6
+    nodeName: ocp4-worker1.aio.example.com
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Never
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000750000
+      seLinuxOptions:
+        level: s0:c27,c24
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: deployer
+    serviceAccountName: deployer
+    shareProcessNamespace: false
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-rlcx2
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:51Z"
+      reason: PodCompleted
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:44Z"
+      reason: PodCompleted
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:44Z"
+      reason: PodCompleted
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:50Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://3187b19b80ad4726f81611c28844d30afd489181188131849f54e3a2d1adb12c
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f1d08a4fed20e6f9fe569f173fc039a6cc6e5f7875566e1b3a4c5cddcbf0c827
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f1d08a4fed20e6f9fe569f173fc039a6cc6e5f7875566e1b3a4c5cddcbf0c827
+      lastState: {}
+      name: deployment
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: cri-o://3187b19b80ad4726f81611c28844d30afd489181188131849f54e3a2d1adb12c
+          exitCode: 0
+          finishedAt: "2023-08-07T22:23:43Z"
+          reason: Completed
+          startedAt: "2023-08-07T22:22:53Z"
+    hostIP: 192.168.123.104
+    phase: Succeeded
+    podIP: 10.129.2.57
+    podIPs:
+    - ip: 10.129.2.57
+    qosClass: BestEffort
+    startTime: "2023-08-07T22:22:51Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.2.54"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.2.54"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: nationalparks
+      openshift.io/deployment.name: nationalparks-1
+      openshift.io/scc: restricted-v2
+      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    creationTimestamp: "2023-08-07T22:22:52Z"
+    generateName: nationalparks-1-
+    labels:
+      app: workshop
+      component: nationalparks
+      deployment: nationalparks-1
+      deploymentConfig: nationalparks
+      deploymentconfig: nationalparks
+      role: database
+    name: nationalparks-1-djfjk
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: nationalparks-1
+      uid: bc98d2c3-34e7-433b-9f2c-914f1a93f0a5
+    resourceVersion: "518298"
+    uid: e6f0d84f-d4f4-4bb7-9c00-23a30a8b734d
+  spec:
+    containers:
+    - env:
+      - name: KUBERNETES_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
+      - name: OPENSHIFT_KUBE_PING_LABELS
+        value: component=nationalparks
+      - name: OPENSHIFT_KUBE_PING_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
+      - name: MONGODB_SERVER_PORT
+        value: "27017"
+      - name: MONGODB_SERVER_HOST
+        value: mongodb-nationalparks
+      - name: MONGODB_USER
+        value: mongodb
+      - name: MONGODB_PASSWORD
+        value: mongodb
+      - name: MONGODB_DATABASE
+        value: mongodb
+      image: quay.io/erkanercan/nationalparks:latest
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ws/healthz/
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      name: nationalparks
+      ports:
+      - containerPort: 8787
+        name: debug
+        protocol: TCP
+      - containerPort: 8778
+        name: jolokia
+        protocol: TCP
+      - containerPort: 8080
+        name: http
+        protocol: TCP
+      - containerPort: 8888
+        name: ping
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ws/healthz/
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 20
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 1000750000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-56gbr
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-wt4qm
+    nodeName: ocp4-worker3.aio.example.com
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000750000
+      seLinuxOptions:
+        level: s0:c27,c24
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-56gbr
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:53Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:43Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:43Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:52Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://6147df195ef3896473d972b02aa8b5e82a58120974f0fe2a77d58e766075a0ad
+      image: quay.io/erkanercan/nationalparks:latest
+      imageID: quay.io/erkanercan/nationalparks@sha256:edf56f2591cfd4f68eb131b0ec2c2dc9f98da19f309dd62df94daaeb36c32dc2
+      lastState: {}
+      name: nationalparks
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2023-08-07T22:23:16Z"
+    hostIP: 192.168.123.106
+    phase: Running
+    podIP: 10.128.2.54
+    podIPs:
+    - ip: 10.128.2.54
+    qosClass: BestEffort
+    startTime: "2023-08-07T22:22:53Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.2.53"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.128.2.53"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/scc: restricted-v2
+      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    generateName: parksmap-5db4448d75-
+    labels:
+      app: workshop
+      component: parksmap
+      pod-template-hash: 5db4448d75
+      role: frontend
+    name: parksmap-5db4448d75-zd8pg
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: parksmap-5db4448d75
+      uid: 141deadf-612e-49c0-930f-79fe15d0e02b
+    resourceVersion: "517685"
+    uid: 4cb5f4fc-b356-4d4a-bcee-ed9640c23f08
+  spec:
+    containers:
+    - image: quay.io/openshiftroadshow/parksmap:latest
+      imagePullPolicy: Always
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /
+          port: 8080
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      name: parksmap
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /
+          port: 8080
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 3
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 1000750000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-grn96
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-wt4qm
+    nodeName: ocp4-worker3.aio.example.com
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000750000
+      seLinuxOptions:
+        level: s0:c27,c24
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-grn96
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:51Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:11Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:23:11Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2023-08-07T22:22:50Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://e371960a116ca76ba8f9023a682f076406fa59b7afd25df4609357fd6e2dcb39
+      image: quay.io/openshiftroadshow/parksmap:latest
+      imageID: quay.io/openshiftroadshow/parksmap@sha256:89d1e324846cb431df9039e1a7fd0ed2ba0c51aafbae73f2abd70a83d5fa173b
+      lastState: {}
+      name: parksmap
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2023-08-07T22:23:02Z"
+    hostIP: 192.168.123.106
+    phase: Running
+    podIP: 10.128.2.53
+    podIPs:
+    - ip: 10.128.2.53
+    qosClass: BestEffort
+    startTime: "2023-08-07T22:22:51Z"
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2023-08-07 22:23:44 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2023-08-07 22:22:50 +0000 UTC
+      openshift.io/deployer-pod.name: mlbparks-1-deploy
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: mlbparks
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: config change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"mlbparks","namespace":"parksmap-demo","uid":"560cc315-3671-4214-9212-ee7d3ab0df8d","resourceVersion":"517193","generation":1,"creationTimestamp":"2023-08-07T22:22:49Z","labels":{"app":"workshop","app.kubernetes.io/name":"eap","app.kubernetes.io/part-of":"workshop","app.openshift.io/runtime":"eap","component":"mlbparks","createdBy":"parksmap-template","role":"backend","template.openshift.io/template-instance-owner":"882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a"},"annotations":{"app.openshift.io/connects-to":"mongodb-mlbparks","app.openshift.io/vcs-ref":"master","app.openshift.io/vcs-uri":"https://github.com/openshift-roadshow/mlbparks.git"},"managedFields":[{"manager":"openshift-controller-manager","operation":"Update","apiVersion":"apps.openshift.io/v1","time":"2023-08-07T22:22:49Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:app.openshift.io/connects-to":{},"f:app.openshift.io/vcs-ref":{},"f:app.openshift.io/vcs-uri":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/name":{},"f:app.kubernetes.io/part-of":{},"f:app.openshift.io/runtime":{},"f:component":{},"f:createdBy":{},"f:role":{},"f:template.openshift.io/template-instance-owner":{}}},"f:spec":{"f:replicas":{},"f:selector":{".":{},"f:app":{},"f:component":{},"f:deploymentConfig":{},"f:role":{}},"f:strategy":{"f:activeDeadlineSeconds":{},"f:recreateParams":{".":{},"f:timeoutSeconds":{}},"f:type":{}},"f:template":{".":{},"f:metadata":{".":{},"f:creationTimestamp":{},"f:labels":{".":{},"f:app":{},"f:component":{},"f:deploymentConfig":{},"f:role":{}}},"f:spec":{".":{},"f:containers":{".":{},"k:{\"name\":\"mlbparks\"}":{".":{},"f:env":{".":{},"k:{\"name\":\"DB_HOST\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"DB_NAME\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"DB_PASSWORD\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"DB_PORT\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"DB_USERNAME\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"KUBERNETES_NAMESPACE\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:fieldRef":{}}},"k:{\"name\":\"OPENSHIFT_KUBE_PING_LABELS\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"OPENSHIFT_KUBE_PING_NAMESPACE\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:fieldRef":{}}}},"f:image":{},"f:imagePullPolicy":{},"f:livenessProbe":{".":{},"f:failureThreshold":{},"f:httpGet":{".":{},"f:path":{},"f:port":{},"f:scheme":{}},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:name":{},"f:ports":{".":{},"k:{\"containerPort\":8080,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}},"k:{\"containerPort\":8778,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}},"k:{\"containerPort\":8787,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}},"k:{\"containerPort\":8888,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}}},"f:readinessProbe":{".":{},"f:failureThreshold":{},"f:httpGet":{".":{},"f:path":{},"f:port":{},"f:scheme":{}},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:resources":{},"f:terminationMessagePath":{},"f:terminationMessagePolicy":{}}},"f:dnsPolicy":{},"f:restartPolicy":{},"f:schedulerName":{},"f:securityContext":{},"f:terminationGracePeriodSeconds":{}}},"f:triggers":{}}}},{"manager":"openshift-controller-manager","operation":"Update","apiVersion":"apps.openshift.io/v1","time":"2023-08-07T22:22:49Z","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:details":{".":{},"f:causes":{},"f:message":{}},"f:latestVersion":{}}},"subresource":"status"}]},"spec":{"strategy":{"type":"Recreate","recreateParams":{"timeoutSeconds":600},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"app":"workshop","component":"mlbparks","deploymentConfig":"mlbparks","role":"database"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"workshop","component":"mlbparks","deploymentConfig":"mlbparks","role":"database"}},"spec":{"containers":[{"name":"mlbparks","image":"quay.io/erkanercan/mlbparks:latest","ports":[{"name":"debug","containerPort":8787,"protocol":"TCP"},{"name":"jolokia","containerPort":8778,"protocol":"TCP"},{"name":"http","containerPort":8080,"protocol":"TCP"},{"name":"ping","containerPort":8888,"protocol":"TCP"}],"env":[{"name":"KUBERNETES_NAMESPACE","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"}}},{"name":"OPENSHIFT_KUBE_PING_LABELS","value":"component=mlbparks"},{"name":"OPENSHIFT_KUBE_PING_NAMESPACE","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"}}},{"name":"DB_PORT","value":"27017"},{"name":"DB_HOST","value":"mongodb-mlbparks"},{"name":"DB_USERNAME","value":"mongodb"},{"name":"DB_PASSWORD","value":"mongodb"},{"name":"DB_NAME","value":"mongodb"}],"resources":{},"livenessProbe":{"httpGet":{"path":"/ws/healthz/","port":8080,"scheme":"HTTP"},"initialDelaySeconds":120,"timeoutSeconds":1,"periodSeconds":10,"successThreshold":1,"failureThreshold":3},"readinessProbe":{"httpGet":{"path":"/ws/healthz/","port":8080,"scheme":"HTTP"},"initialDelaySeconds":20,"timeoutSeconds":1,"periodSeconds":10,"successThreshold":1,"failureThreshold":3},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"IfNotPresent"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":1,"observedGeneration":0,"replicas":0,"updatedReplicas":0,"availableReplicas":0,"unavailableReplicas":0,"details":{"message":"config change","causes":[{"type":"ConfigChange"}]}}}
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    generation: 2
+    labels:
+      app: workshop
+      app.kubernetes.io/name: eap
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/runtime: eap
+      component: mlbparks
+      createdBy: parksmap-template
+      openshift.io/deployment-config.name: mlbparks
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: mlbparks-1
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: mlbparks
+      uid: 560cc315-3671-4214-9212-ee7d3ab0df8d
+    resourceVersion: "518383"
+    uid: c1e05508-c2c0-43f8-b247-2ff722a3823c
+  spec:
+    replicas: 1
+    selector:
+      app: workshop
+      component: mlbparks
+      deployment: mlbparks-1
+      deploymentConfig: mlbparks
+      deploymentconfig: mlbparks
+      role: database
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "1"
+          openshift.io/deployment-config.name: mlbparks
+          openshift.io/deployment.name: mlbparks-1
+        creationTimestamp: null
+        labels:
+          app: workshop
+          component: mlbparks
+          deployment: mlbparks-1
+          deploymentConfig: mlbparks
+          deploymentconfig: mlbparks
+          role: database
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: OPENSHIFT_KUBE_PING_LABELS
+            value: component=mlbparks
+          - name: OPENSHIFT_KUBE_PING_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: DB_PORT
+            value: "27017"
+          - name: DB_HOST
+            value: mongodb-mlbparks
+          - name: DB_USERNAME
+            value: mongodb
+          - name: DB_PASSWORD
+            value: mongodb
+          - name: DB_NAME
+            value: mongodb
+          image: quay.io/erkanercan/mlbparks:latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: mlbparks
+          ports:
+          - containerPort: 8787
+            name: debug
+            protocol: TCP
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8888
+            name: ping
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.completed-at: 2023-08-07 22:23:43 +0000 UTC
+      openshift.io/deployer-pod.created-at: 2023-08-07 22:22:50 +0000 UTC
+      openshift.io/deployer-pod.name: nationalparks-1-deploy
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: nationalparks
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: config change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"nationalparks","namespace":"parksmap-demo","uid":"c2aaf599-c54f-4e00-bf57-fe3b7c701b06","resourceVersion":"517202","generation":1,"creationTimestamp":"2023-08-07T22:22:50Z","labels":{"app":"workshop","app.kubernetes.io/part-of":"workshop","app.openshift.io/runtime":"spring-boot","component":"nationalparks","createdBy":"parksmap-template","role":"backend","template.openshift.io/template-instance-owner":"882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a"},"annotations":{"app.openshift.io/connects-to":"mongodb-nationalparks","app.openshift.io/vcs-ref":"master","app.openshift.io/vcs-uri":"https://github.com/openshift-roadshow/nationalparks.git"},"managedFields":[{"manager":"openshift-controller-manager","operation":"Update","apiVersion":"apps.openshift.io/v1","time":"2023-08-07T22:22:50Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:app.openshift.io/connects-to":{},"f:app.openshift.io/vcs-ref":{},"f:app.openshift.io/vcs-uri":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/part-of":{},"f:app.openshift.io/runtime":{},"f:component":{},"f:createdBy":{},"f:role":{},"f:template.openshift.io/template-instance-owner":{}}},"f:spec":{"f:replicas":{},"f:selector":{".":{},"f:app":{},"f:component":{},"f:deploymentConfig":{},"f:role":{}},"f:strategy":{"f:activeDeadlineSeconds":{},"f:recreateParams":{".":{},"f:timeoutSeconds":{}},"f:type":{}},"f:template":{".":{},"f:metadata":{".":{},"f:creationTimestamp":{},"f:labels":{".":{},"f:app":{},"f:component":{},"f:deploymentConfig":{},"f:role":{}}},"f:spec":{".":{},"f:containers":{".":{},"k:{\"name\":\"nationalparks\"}":{".":{},"f:env":{".":{},"k:{\"name\":\"KUBERNETES_NAMESPACE\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:fieldRef":{}}},"k:{\"name\":\"MONGODB_DATABASE\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"MONGODB_PASSWORD\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"MONGODB_SERVER_HOST\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"MONGODB_SERVER_PORT\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"MONGODB_USER\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"OPENSHIFT_KUBE_PING_LABELS\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"OPENSHIFT_KUBE_PING_NAMESPACE\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:fieldRef":{}}}},"f:image":{},"f:imagePullPolicy":{},"f:livenessProbe":{".":{},"f:failureThreshold":{},"f:httpGet":{".":{},"f:path":{},"f:port":{},"f:scheme":{}},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:name":{},"f:ports":{".":{},"k:{\"containerPort\":8080,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}},"k:{\"containerPort\":8778,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}},"k:{\"containerPort\":8787,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}},"k:{\"containerPort\":8888,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}}},"f:readinessProbe":{".":{},"f:failureThreshold":{},"f:httpGet":{".":{},"f:path":{},"f:port":{},"f:scheme":{}},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:resources":{},"f:terminationMessagePath":{},"f:terminationMessagePolicy":{}}},"f:dnsPolicy":{},"f:restartPolicy":{},"f:schedulerName":{},"f:securityContext":{},"f:terminationGracePeriodSeconds":{}}},"f:triggers":{}}}},{"manager":"openshift-controller-manager","operation":"Update","apiVersion":"apps.openshift.io/v1","time":"2023-08-07T22:22:50Z","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:details":{".":{},"f:causes":{},"f:message":{}},"f:latestVersion":{}}},"subresource":"status"}]},"spec":{"strategy":{"type":"Recreate","recreateParams":{"timeoutSeconds":600},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ConfigChange"}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"app":"workshop","component":"nationalparks","deploymentConfig":"nationalparks","role":"database"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"workshop","component":"nationalparks","deploymentConfig":"nationalparks","role":"database"}},"spec":{"containers":[{"name":"nationalparks","image":"quay.io/erkanercan/nationalparks:latest","ports":[{"name":"debug","containerPort":8787,"protocol":"TCP"},{"name":"jolokia","containerPort":8778,"protocol":"TCP"},{"name":"http","containerPort":8080,"protocol":"TCP"},{"name":"ping","containerPort":8888,"protocol":"TCP"}],"env":[{"name":"KUBERNETES_NAMESPACE","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"}}},{"name":"OPENSHIFT_KUBE_PING_LABELS","value":"component=nationalparks"},{"name":"OPENSHIFT_KUBE_PING_NAMESPACE","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"}}},{"name":"MONGODB_SERVER_PORT","value":"27017"},{"name":"MONGODB_SERVER_HOST","value":"mongodb-nationalparks"},{"name":"MONGODB_USER","value":"mongodb"},{"name":"MONGODB_PASSWORD","value":"mongodb"},{"name":"MONGODB_DATABASE","value":"mongodb"}],"resources":{},"livenessProbe":{"httpGet":{"path":"/ws/healthz/","port":8080,"scheme":"HTTP"},"initialDelaySeconds":120,"timeoutSeconds":1,"periodSeconds":10,"successThreshold":1,"failureThreshold":3},"readinessProbe":{"httpGet":{"path":"/ws/healthz/","port":8080,"scheme":"HTTP"},"initialDelaySeconds":20,"timeoutSeconds":1,"periodSeconds":10,"successThreshold":1,"failureThreshold":3},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"IfNotPresent"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":1,"observedGeneration":0,"replicas":0,"updatedReplicas":0,"availableReplicas":0,"unavailableReplicas":0,"details":{"message":"config change","causes":[{"type":"ConfigChange"}]}}}
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    generation: 2
+    labels:
+      app: workshop
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/runtime: spring-boot
+      component: nationalparks
+      createdBy: parksmap-template
+      openshift.io/deployment-config.name: nationalparks
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: nationalparks-1
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DeploymentConfig
+      name: nationalparks
+      uid: c2aaf599-c54f-4e00-bf57-fe3b7c701b06
+    resourceVersion: "518356"
+    uid: bc98d2c3-34e7-433b-9f2c-914f1a93f0a5
+  spec:
+    replicas: 1
+    selector:
+      app: workshop
+      component: nationalparks
+      deployment: nationalparks-1
+      deploymentConfig: nationalparks
+      deploymentconfig: nationalparks
+      role: database
+    template:
+      metadata:
+        annotations:
+          openshift.io/deployment-config.latest-version: "1"
+          openshift.io/deployment-config.name: nationalparks
+          openshift.io/deployment.name: nationalparks-1
+        creationTimestamp: null
+        labels:
+          app: workshop
+          component: nationalparks
+          deployment: nationalparks-1
+          deploymentConfig: nationalparks
+          deploymentconfig: nationalparks
+          role: database
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: OPENSHIFT_KUBE_PING_LABELS
+            value: component=nationalparks
+          - name: OPENSHIFT_KUBE_PING_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MONGODB_SERVER_PORT
+            value: "27017"
+          - name: MONGODB_SERVER_HOST
+            value: mongodb-nationalparks
+          - name: MONGODB_USER
+            value: mongodb
+          - name: MONGODB_PASSWORD
+            value: mongodb
+          - name: MONGODB_DATABASE
+            value: mongodb
+          image: quay.io/erkanercan/nationalparks:latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: nationalparks
+          ports:
+          - containerPort: 8787
+            name: debug
+            protocol: TCP
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8888
+            name: ping
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      service.alpha.openshift.io/dependencies: '[{"name":"mongodb-mlbparks","namespace":"","kind":"Service"}]'
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      app: workshop
+      component: mlbparks
+      createdBy: parksmap-template
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+      type: parksmap-backend
+    name: mlbparks
+    namespace: parksmap-demo
+    resourceVersion: "517190"
+    uid: 80a3a677-7c88-4cc8-9c92-f026944935eb
+  spec:
+    clusterIP: 172.30.63.151
+    clusterIPs:
+    - 172.30.63.151
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8787-tcp
+      port: 8787
+      protocol: TCP
+      targetPort: 8787
+    selector:
+      deploymentConfig: mlbparks
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      template.openshift.io/expose-uri: mongodb://{.spec.clusterIP}:{.spec.ports[?(.name=="mongo")].port}
+    creationTimestamp: "2023-08-07T22:30:15Z"
+    labels:
+      app: mongodb
+      component: mongodb-mlbparks
+      role: database
+    name: mongodb-mlbparks
+    namespace: parksmap-demo
+    resourceVersion: "525976"
+    uid: 9428bede-39d0-46eb-acd8-c4d6dde7cb60
+  spec:
+    clusterIP: 172.30.245.148
+    clusterIPs:
+    - 172.30.245.148
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: mongo
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      flavor.template.kubevirt.io/small: "true"
+      kubevirt.io/domain: mongodb-mlbparks
+      kubevirt.io/size: small
+      os.template.kubevirt.io/centos8: "true"
+      vm.kubevirt.io/name: mongodb-mlbparks
+      workload.template.kubevirt.io/server: "true"
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      template.openshift.io/expose-uri: mongodb://{.spec.clusterIP}:{.spec.ports[?(.name=="mongo")].port}
+    creationTimestamp: "2023-08-07T21:44:48Z"
+    labels:
+      app: mongodb
+      component: mongodb-nationalparks
+      role: database
+      template.openshift.io/template-instance-owner: 2bae637a-ed51-4c35-8e67-213fd8a7b251
+    name: mongodb-nationalparks
+    namespace: parksmap-demo
+    resourceVersion: "472640"
+    uid: 38123631-225d-4934-87b4-f3b08dc0e2e6
+  spec:
+    clusterIP: 172.30.175.196
+    clusterIPs:
+    - 172.30.175.196
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: mongo
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      flavor.template.kubevirt.io/small: "true"
+      kubevirt.io/domain: mongodb-nationalparks
+      kubevirt.io/size: small
+      os.template.kubevirt.io/centos8: "true"
+      vm.kubevirt.io/name: mongodb-nationalparks
+      workload.template.kubevirt.io/server: "true"
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      service.alpha.openshift.io/dependencies: '[{"name":"mongodb-nationalparks","namespace":"","kind":"Service"}]'
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      app: workshop
+      component: nationalparks
+      createdBy: parksmap-template
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+      type: parksmap-backend
+    name: nationalparks
+    namespace: parksmap-demo
+    resourceVersion: "517207"
+    uid: 7ccbf49d-077a-4112-86ad-fcaeacff29a3
+  spec:
+    clusterIP: 172.30.212.77
+    clusterIPs:
+    - 172.30.212.77
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8787-tcp
+      port: 8787
+      protocol: TCP
+      targetPort: 8787
+    selector:
+      deploymentConfig: nationalparks
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      app: workshop
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/component: parksmap
+      component: parksmap
+      createdBy: parksmap-template
+      role: frontend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: parksmap
+    namespace: parksmap-demo
+    resourceVersion: "517222"
+    uid: e441db68-48c4-43dd-a8a3-99a5add9eb26
+  spec:
+    clusterIP: 172.30.16.9
+    clusterIPs:
+    - 172.30.16.9
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8787-tcp
+      port: 8787
+      protocol: TCP
+      targetPort: 8787
+    selector:
+      component: parksmap
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: mlbparks, nationalparks
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    generation: 1
+    labels:
+      app: workshop
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/component: parksmap
+      app.openshift.io/runtime: spring-boot
+      component: parksmap
+      createdBy: parksmap-template
+      deploymentConfig: parksmap
+      role: frontend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: parksmap
+    namespace: parksmap-demo
+    resourceVersion: "517689"
+    uid: 897aa670-2786-4d3a-b033-2b931de3876c
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: workshop
+        component: parksmap
+        role: frontend
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: workshop
+          component: parksmap
+          role: frontend
+      spec:
+        containers:
+        - image: quay.io/openshiftroadshow/parksmap:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: parksmap
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2023-08-07T22:23:11Z"
+      lastUpdateTime: "2023-08-07T22:23:11Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2023-08-07T22:22:50Z"
+      lastUpdateTime: "2023-08-07T22:23:11Z"
+      message: ReplicaSet "parksmap-5db4448d75" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: mlbparks, nationalparks
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    generation: 1
+    labels:
+      app: workshop
+      component: parksmap
+      pod-template-hash: 5db4448d75
+      role: frontend
+    name: parksmap-5db4448d75
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: parksmap
+      uid: 897aa670-2786-4d3a-b033-2b931de3876c
+    resourceVersion: "517688"
+    uid: 141deadf-612e-49c0-930f-79fe15d0e02b
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: workshop
+        component: parksmap
+        pod-template-hash: 5db4448d75
+        role: frontend
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: workshop
+          component: parksmap
+          pod-template-hash: 5db4448d75
+          role: frontend
+      spec:
+        containers:
+        - image: quay.io/openshiftroadshow/parksmap:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: parksmap
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: mongodb-mlbparks
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/openshift-roadshow/mlbparks.git
+    creationTimestamp: "2023-08-07T22:22:49Z"
+    generation: 1
+    labels:
+      app: workshop
+      app.kubernetes.io/name: eap
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/runtime: eap
+      component: mlbparks
+      createdBy: parksmap-template
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: mlbparks
+    namespace: parksmap-demo
+    resourceVersion: "518384"
+    uid: 560cc315-3671-4214-9212-ee7d3ab0df8d
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: workshop
+      component: mlbparks
+      deploymentConfig: mlbparks
+      role: database
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: workshop
+          component: mlbparks
+          deploymentConfig: mlbparks
+          role: database
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: OPENSHIFT_KUBE_PING_LABELS
+            value: component=mlbparks
+          - name: OPENSHIFT_KUBE_PING_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: DB_PORT
+            value: "27017"
+          - name: DB_HOST
+            value: mongodb-mlbparks
+          - name: DB_USERNAME
+            value: mongodb
+          - name: DB_PASSWORD
+            value: mongodb
+          - name: DB_NAME
+            value: mongodb
+          image: quay.io/erkanercan/mlbparks:latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: mlbparks
+          ports:
+          - containerPort: 8787
+            name: debug
+            protocol: TCP
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8888
+            name: ping
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2023-08-07T22:23:43Z"
+      lastUpdateTime: "2023-08-07T22:23:43Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2023-08-07T22:23:46Z"
+      lastUpdateTime: "2023-08-07T22:23:46Z"
+      message: replication controller "mlbparks-1" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: ConfigChange
+      message: config change
+    latestVersion: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: mongodb-nationalparks
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/openshift-roadshow/nationalparks.git
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    generation: 1
+    labels:
+      app: workshop
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/runtime: spring-boot
+      component: nationalparks
+      createdBy: parksmap-template
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: nationalparks
+    namespace: parksmap-demo
+    resourceVersion: "518357"
+    uid: c2aaf599-c54f-4e00-bf57-fe3b7c701b06
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: workshop
+      component: nationalparks
+      deploymentConfig: nationalparks
+      role: database
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: workshop
+          component: nationalparks
+          deploymentConfig: nationalparks
+          role: database
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: OPENSHIFT_KUBE_PING_LABELS
+            value: component=nationalparks
+          - name: OPENSHIFT_KUBE_PING_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MONGODB_SERVER_PORT
+            value: "27017"
+          - name: MONGODB_SERVER_HOST
+            value: mongodb-nationalparks
+          - name: MONGODB_USER
+            value: mongodb
+          - name: MONGODB_PASSWORD
+            value: mongodb
+          - name: MONGODB_DATABASE
+            value: mongodb
+          image: quay.io/erkanercan/nationalparks:latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: nationalparks
+          ports:
+          - containerPort: 8787
+            name: debug
+            protocol: TCP
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8888
+            name: ping
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/healthz/
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2023-08-07T22:23:43Z"
+      lastUpdateTime: "2023-08-07T22:23:43Z"
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2023-08-07T22:23:45Z"
+      lastUpdateTime: "2023-08-07T22:23:45Z"
+      message: replication controller "nationalparks-1" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: ConfigChange
+      message: config change
+    latestVersion: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      app: workshop
+      component: mlbparks
+      createdBy: parksmap-template
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+      type: parksmap-backend
+    name: mlbparks
+    namespace: parksmap-demo
+    resourceVersion: "517198"
+    uid: 46f9de82-1b35-4dd2-9cb5-08ccf72e4337
+  spec:
+    host: mlbparks-parksmap-demo.apps.2b5jh.dynamic.opentlc.com
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: mlbparks
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2023-08-07T22:22:50Z"
+        status: "True"
+        type: Admitted
+      host: mlbparks-parksmap-demo.apps.2b5jh.dynamic.opentlc.com
+      routerCanonicalHostname: router-default.apps.2b5jh.dynamic.opentlc.com
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      app: workshop
+      component: nationalparks
+      createdBy: parksmap-template
+      role: backend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+      type: parksmap-backend
+    name: nationalparks
+    namespace: parksmap-demo
+    resourceVersion: "517217"
+    uid: 486c5dfa-4ca4-4f39-b05d-44bffb59203d
+  spec:
+    host: nationalparks-parksmap-demo.apps.2b5jh.dynamic.opentlc.com
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: nationalparks
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2023-08-07T22:22:51Z"
+        status: "True"
+        type: Admitted
+      host: nationalparks-parksmap-demo.apps.2b5jh.dynamic.opentlc.com
+      routerCanonicalHostname: router-default.apps.2b5jh.dynamic.opentlc.com
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2023-08-07T22:22:50Z"
+    labels:
+      app: workshop
+      app.kubernetes.io/part-of: workshop
+      app.openshift.io/component: parksmap
+      component: parksmap
+      createdBy: parksmap-template
+      role: frontend
+      template.openshift.io/template-instance-owner: 882c8e22-b6d4-4a3d-9a30-b4d3d4284a1a
+    name: parksmap
+    namespace: parksmap-demo
+    resourceVersion: "517236"
+    uid: 70994cc0-b510-4ae0-96de-dcb8af43ee87
+  spec:
+    host: parksmap-parksmap-demo.apps.2b5jh.dynamic.opentlc.com
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: parksmap
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2023-08-07T22:22:51Z"
+        status: "True"
+        type: Admitted
+      host: parksmap-parksmap-demo.apps.2b5jh.dynamic.opentlc.com
+      routerCanonicalHostname: router-default.apps.2b5jh.dynamic.opentlc.com
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: kubevirt.io/v1
+  kind: VirtualMachine
+  metadata:
+    annotations:
+      kubemacpool.io/transaction-timestamp: "2023-08-07T22:30:16.046863714Z"
+      kubevirt.io/latest-observed-api-version: v1
+      kubevirt.io/storage-observed-api-version: v1alpha3
+      name.os.template.kubevirt.io/centos8: CentOS 8 or higher
+      openshift.io/display-name: MongoDB Virtual Machine
+    creationTimestamp: "2023-08-07T22:30:15Z"
+    generation: 1
+    labels:
+      app: mongodb
+      app.kubernetes.io/part-of: workshop
+      flavor.template.kubevirt.io/small: "true"
+      kubevirt.io/domain: mongodb-mlbparks
+      kubevirt.io/size: small
+      os.template.kubevirt.io/centos8: "true"
+      vm.kubevirt.io/name: mongodb-mlbparks
+      workload.template.kubevirt.io/server: "true"
+    name: mongodb-mlbparks
+    namespace: parksmap-demo
+    resourceVersion: "525986"
+    uid: 8a8f9976-b882-4eff-8189-7d397a6abc6a
+  spec:
+    dataVolumeTemplates:
+    - apiVersion: cdi.kubevirt.io/v1alpha1
+      kind: DataVolume
+      metadata:
+        creationTimestamp: null
+        name: mongodb-mlbparks-rootdisk
+      spec:
+        pvc:
+          accessModes:
+          - ReadWriteMany
+          resources:
+            requests:
+              storage: 20Gi
+          storageClassName: ocs-storagecluster-ceph-rbd
+          volumeMode: Block
+        source:
+          pvc:
+            name: centos8
+            namespace: openshift-virtualization-os-images
+    running: true
+    template:
+      metadata:
+        annotations:
+          vm.kubevirt.io/flavor: small
+          vm.kubevirt.io/os: centos8
+          vm.kubevirt.io/workload: server
+        creationTimestamp: null
+        labels:
+          flavor.template.kubevirt.io/small: "true"
+          kubevirt.io/domain: mongodb-mlbparks
+          kubevirt.io/size: small
+          os.template.kubevirt.io/centos8: "true"
+          vm.kubevirt.io/name: mongodb-mlbparks
+          workload.template.kubevirt.io/server: "true"
+      spec:
+        domain:
+          cpu:
+            cores: 1
+            sockets: 1
+            threads: 1
+          devices:
+            disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: mongodb-mlbparks-rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+            interfaces:
+            - macAddress: 02:49:86:00:00:06
+              masquerade: {}
+              model: virtio
+              name: nic-0
+            networkInterfaceMultiqueue: true
+            rng: {}
+          machine:
+            type: pc-q35-rhel8.4.0
+          resources:
+            requests:
+              memory: 2Gi
+        evictionStrategy: LiveMigrate
+        hostname: mongodb-mlbparks
+        networks:
+        - name: nic-0
+          pod: {}
+        terminationGracePeriodSeconds: 180
+        volumes:
+        - dataVolume:
+            name: mongodb-mlbparks-rootdisk
+          name: mongodb-mlbparks-rootdisk
+        - cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              user: redhat
+              password: openshift
+              chpasswd: { expire: False }
+              yum_repos:
+                mongodb-org-3.6:
+                  baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.6/x86_64/
+                  enabled: true
+                  gpgcheck: true
+                  gpgkey: https://www.mongodb.org/static/pgp/server-3.6.asc
+                  name: MongoDB Repository
+              packages:
+                - bash-completion
+                - mongodb-org
+              runcmd:
+                - systemctl daemon-reload
+                - systemctl enable mongod.service
+                - systemctl start mongod.service
+                - >
+                  mongo admin --host localhost --eval "db.createUser({user: 'root', pwd: 'mongodb', roles: [{role: 'root', db: 'admin'}]});"
+                - >
+                  mongo admin --host localhost --eval "db.getSiblingDB('mongodb').createUser({user: 'mongodb', pwd: 'mongodb', roles: [{role: 'dbOwner', db: 'mongodb'}]});"
+                - >
+                  sed -i -e 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
+                - >
+                  sed -i -e 's/^#security:/security:/g' /etc/mongod.conf
+                - >
+                  sed -i -e '/^security:/a \  authorization: enabled' /etc/mongod.conf
+                - systemctl restart mongod.service
+          name: cloudinitdisk
+  status:
+    conditions:
+    - lastProbeTime: "2023-08-07T22:30:16Z"
+      lastTransitionTime: "2023-08-07T22:30:16Z"
+      message: VMI does not exist
+      reason: VMINotExists
+      status: "False"
+      type: Ready
+    printableStatus: Stopped
+    volumeSnapshotStatuses:
+    - enabled: true
+      name: mongodb-mlbparks-rootdisk
+    - enabled: false
+      name: cloudinitdisk
+      reason: Snapshot is not supported for this volumeSource type [cloudinitdisk]
+- apiVersion: kubevirt.io/v1
+  kind: VirtualMachine
+  metadata:
+    annotations:
+      kubemacpool.io/transaction-timestamp: "2023-08-07T21:55:20.290113755Z"
+      kubevirt.io/latest-observed-api-version: v1
+      kubevirt.io/storage-observed-api-version: v1alpha3
+      name.os.template.kubevirt.io/centos8: CentOS 8 or higher
+      openshift.io/display-name: MongoDB Virtual Machine
+    creationTimestamp: "2023-08-07T21:55:20Z"
+    generation: 1
+    labels:
+      app: mongodb
+      app.kubernetes.io/part-of: workshop
+      flavor.template.kubevirt.io/small: "true"
+      kubevirt.io/domain: mongodb-nationalparks
+      kubevirt.io/size: small
+      os.template.kubevirt.io/centos8: "true"
+      template.openshift.io/template-instance-owner: 55c66628-c3d5-44a2-81b8-82a05b9e806c
+      vm.kubevirt.io/name: mongodb-nationalparks
+      workload.template.kubevirt.io/server: "true"
+    name: mongodb-nationalparks
+    namespace: parksmap-demo
+    resourceVersion: "484943"
+    uid: 12d389bc-d142-49ea-876f-a52b2b571fb2
+  spec:
+    dataVolumeTemplates:
+    - apiVersion: cdi.kubevirt.io/v1alpha1
+      kind: DataVolume
+      metadata:
+        creationTimestamp: null
+        name: mongodb-nationalparks-rootdisk
+      spec:
+        pvc:
+          accessModes:
+          - ReadWriteMany
+          resources:
+            requests:
+              storage: 20Gi
+          storageClassName: ocs-storagecluster-ceph-rbd
+          volumeMode: Block
+        source:
+          pvc:
+            name: centos8
+            namespace: openshift-virtualization-os-images
+    running: true
+    template:
+      metadata:
+        annotations:
+          vm.kubevirt.io/flavor: small
+          vm.kubevirt.io/os: centos8
+          vm.kubevirt.io/workload: server
+        creationTimestamp: null
+        labels:
+          flavor.template.kubevirt.io/small: "true"
+          kubevirt.io/domain: mongodb-nationalparks
+          kubevirt.io/size: small
+          os.template.kubevirt.io/centos8: "true"
+          vm.kubevirt.io/name: mongodb-nationalparks
+          workload.template.kubevirt.io/server: "true"
+      spec:
+        domain:
+          cpu:
+            cores: 1
+            sockets: 1
+            threads: 1
+          devices:
+            disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: mongodb-nationalparks-rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+            interfaces:
+            - macAddress: 02:49:86:00:00:05
+              masquerade: {}
+              model: virtio
+              name: nic-0
+            networkInterfaceMultiqueue: true
+            rng: {}
+          machine:
+            type: pc-q35-rhel8.4.0
+          resources:
+            requests:
+              memory: 2Gi
+        evictionStrategy: LiveMigrate
+        hostname: mongodb-nationalparks
+        networks:
+        - name: nic-0
+          pod: {}
+        terminationGracePeriodSeconds: 180
+        volumes:
+        - dataVolume:
+            name: mongodb-nationalparks-rootdisk
+          name: mongodb-nationalparks-rootdisk
+        - cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              user: redhat
+              password: openshift
+              chpasswd: { expire: False }
+              yum_repos:
+                mongodb-org-3.6:
+                  baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.6/x86_64/
+                  enabled: true
+                  gpgcheck: true
+                  gpgkey: https://www.mongodb.org/static/pgp/server-3.6.asc
+                  name: MongoDB Repository
+              packages:
+                - bash-completion
+                - mongodb-org
+              runcmd:
+                - systemctl daemon-reload
+                - systemctl enable mongod.service
+                - systemctl start mongod.service
+                - >
+                  mongo admin --host localhost --eval "db.createUser({user: 'root', pwd: 'mongodb', roles: [{role: 'root', db: 'admin'}]});"
+                - >
+                  mongo admin --host localhost --eval "db.getSiblingDB('mongodb').createUser({user: 'mongodb', pwd: 'mongodb', roles: [{role: 'dbOwner', db: 'mongodb'}]});"
+                - >
+                  sed -i -e 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
+                - >
+                  sed -i -e 's/^#security:/security:/g' /etc/mongod.conf
+                - >
+                  sed -i -e '/^security:/a \  authorization: enabled' /etc/mongod.conf
+                - systemctl restart mongod.service
+          name: cloudinitdisk
+  status:
+    conditions:
+    - lastProbeTime: "2023-08-07T21:55:21Z"
+      lastTransitionTime: "2023-08-07T21:55:21Z"
+      message: VMI does not exist
+      reason: VMINotExists
+      status: "False"
+      type: Ready
+    printableStatus: Stopped
+    volumeSnapshotStatuses:
+    - enabled: true
+      name: mongodb-nationalparks-rootdisk
+    - enabled: false
+      name: cloudinitdisk
+      reason: Snapshot is not supported for this volumeSource type [cloudinitdisk]
+- apiVersion: cdi.kubevirt.io/v1beta1
+  kind: DataVolume
+  metadata:
+    annotations:
+      cdi.kubevirt.io/cloneType: ""
+      cdi.kubevirt.io/storage.clone.token: eyJhbGciOiJQUzI1NiJ9.eyJleHAiOjE2OTE0NDc3MTYsImlhdCI6MTY5MTQ0NzQxNiwiaXNzIjoiY2RpLWFwaXNlcnZlciIsIm5hbWUiOiJjZW50b3M4IiwibmFtZXNwYWNlIjoib3BlbnNoaWZ0LXZpcnR1YWxpemF0aW9uLW9zLWltYWdlcyIsIm5iZiI6MTY5MTQ0NzQxNiwib3BlcnRhdGlvbiI6IkNsb25lIiwicGFyYW1zIjp7InRhcmdldE5hbWUiOiJtb25nb2RiLW1sYnBhcmtzLXJvb3RkaXNrIiwidGFyZ2V0TmFtZXNwYWNlIjoicGFya3NtYXAtZGVtbyJ9LCJyZXNvdXJjZSI6eyJncm91cCI6IiIsInJlc291cmNlIjoicGVyc2lzdGVudHZvbHVtZWNsYWltcyIsInZlcnNpb24iOiJ2MSJ9fQ.mexaVAhm8csLu3oWa9knetvGOS37gT5abipj9Eck6PCr5YFuQiSadE7nmAnZV3HV9u4UtWkDgzsKm3H3bDhzauOEBYipR0aAjwm_dYmZfURwVoMaQMKZKjtcghyysTYuJlRs_TyXENPQsoJjsXw29kbDaWo-nn_OQsgJHkAcuiHWM0QiyppN94RqfF_0l2ssle9nQIQu-SHTQ2bLcEhYkMj5PGMocYbgy-fGyAH3Z_4vj51b_VAryiELS27W3UpAYLslU2ELG3caUvrgeOFonNBhxMTXXLACUfZSVeda4fJvexbU0bJqdGfmdG821xAxhuJNQ5VFlermwZy_Yr2m1w
+      cdi.kubevirt.io/storage.deleteAfterCompletion: "true"
+    creationTimestamp: "2023-08-07T22:30:15Z"
+    generation: 2
+    labels:
+      kubevirt.io/created-by: 8a8f9976-b882-4eff-8189-7d397a6abc6a
+    name: mongodb-mlbparks-rootdisk
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: kubevirt.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: VirtualMachine
+      name: mongodb-mlbparks
+      uid: 8a8f9976-b882-4eff-8189-7d397a6abc6a
+    resourceVersion: "525987"
+    uid: 17774b4c-66c1-447d-b44e-a873cbd02652
+  spec:
+    pvc:
+      accessModes:
+      - ReadWriteMany
+      resources:
+        requests:
+          storage: 20Gi
+      storageClassName: ocs-storagecluster-ceph-rbd
+      volumeMode: Block
+    source:
+      pvc:
+        name: centos8
+        namespace: openshift-virtualization-os-images
+  status:
+    conditions:
+    - lastHeartbeatTime: "2023-08-07T22:30:16Z"
+      lastTransitionTime: "2023-08-07T22:30:16Z"
+      message: No PVC found
+      reason: CloneWithoutSource
+      status: Unknown
+      type: Bound
+    - lastHeartbeatTime: "2023-08-07T22:30:16Z"
+      lastTransitionTime: "2023-08-07T22:30:16Z"
+      reason: CloneWithoutSource
+      status: "False"
+      type: Ready
+    - lastHeartbeatTime: "2023-08-07T22:30:16Z"
+      lastTransitionTime: "2023-08-07T22:30:16Z"
+      status: "False"
+      type: Running
+- apiVersion: cdi.kubevirt.io/v1beta1
+  kind: DataVolume
+  metadata:
+    annotations:
+      cdi.kubevirt.io/cloneType: ""
+      cdi.kubevirt.io/storage.clone.token: eyJhbGciOiJQUzI1NiJ9.eyJleHAiOjE2OTE0NDU2MjAsImlhdCI6MTY5MTQ0NTMyMCwiaXNzIjoiY2RpLWFwaXNlcnZlciIsIm5hbWUiOiJjZW50b3M4IiwibmFtZXNwYWNlIjoib3BlbnNoaWZ0LXZpcnR1YWxpemF0aW9uLW9zLWltYWdlcyIsIm5iZiI6MTY5MTQ0NTMyMCwib3BlcnRhdGlvbiI6IkNsb25lIiwicGFyYW1zIjp7InRhcmdldE5hbWUiOiJtb25nb2RiLW5hdGlvbmFscGFya3Mtcm9vdGRpc2siLCJ0YXJnZXROYW1lc3BhY2UiOiJwYXJrc21hcC1kZW1vIn0sInJlc291cmNlIjp7Imdyb3VwIjoiIiwicmVzb3VyY2UiOiJwZXJzaXN0ZW50dm9sdW1lY2xhaW1zIiwidmVyc2lvbiI6InYxIn19.Z5BuptGi6Q1SIDJnzLZnr5PdeT7sCm5r1l_aYjhe9QTbj1pfn0i-GrRdim1GWqe096-jiupycDuCj5P1GfTzVFK8BCGl565RJ26PND5tjPX3tJ3bexUSEIWWl0cyYCbbGAc9469jR52EURW8cLStN_t421ti9Wlqs6cGZxR-uamAvs6R57PSEspQrLREMo83adddJB5-YgtNqZaQSvCMRAt6wntcD015LijDnulb3757fGhC-Ec2qotJv9iC4yR4rYN0t3zJBnpmw4lu7hLEk4Yzp52bYfuNrs3aUjVvqWwmwF2MA4PpPBzs9ODJibxS9NuVB6GgEty8Pq9-FNrMtQ
+      cdi.kubevirt.io/storage.deleteAfterCompletion: "true"
+    creationTimestamp: "2023-08-07T21:55:20Z"
+    generation: 2
+    labels:
+      kubevirt.io/created-by: 12d389bc-d142-49ea-876f-a52b2b571fb2
+    name: mongodb-nationalparks-rootdisk
+    namespace: parksmap-demo
+    ownerReferences:
+    - apiVersion: kubevirt.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: VirtualMachine
+      name: mongodb-nationalparks
+      uid: 12d389bc-d142-49ea-876f-a52b2b571fb2
+    resourceVersion: "484941"
+    uid: 6ca306b1-913c-4e1f-bd40-6fa33c9f3273
+  spec:
+    pvc:
+      accessModes:
+      - ReadWriteMany
+      resources:
+        requests:
+          storage: 20Gi
+      storageClassName: ocs-storagecluster-ceph-rbd
+      volumeMode: Block
+    source:
+      pvc:
+        name: centos8
+        namespace: openshift-virtualization-os-images
+  status:
+    conditions:
+    - lastHeartbeatTime: "2023-08-07T21:55:20Z"
+      lastTransitionTime: "2023-08-07T21:55:20Z"
+      message: No PVC found
+      reason: CloneWithoutSource
+      status: Unknown
+      type: Bound
+    - lastHeartbeatTime: "2023-08-07T21:55:20Z"
+      lastTransitionTime: "2023-08-07T21:55:20Z"
+      reason: CloneWithoutSource
+      status: "False"
+      type: Ready
+    - lastHeartbeatTime: "2023-08-07T21:55:20Z"
+      lastTransitionTime: "2023-08-07T21:55:20Z"
+      status: "False"
+      type: Running
+kind: List
+metadata:
+  resourceVersion: ""

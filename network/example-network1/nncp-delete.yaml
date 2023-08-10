@@ -1,0 +1,53 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: br1-intervm-delete-policy-workers
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: ""
+  desiredState:
+    interfaces:
+      - ipv4:
+          address: []
+          dhcp: false
+          enabled: false
+        ipv6:
+          address: []
+          autoconf: false
+          dhcp: false
+          enabled: false
+        name: enp9s0
+        lldp:
+          enabled: false
+        mtu: 1500
+        state: up
+        ethtool:
+          feature:
+            rx-gro: true
+            tx-generic-segmentation: true
+            tx-tcp-segmentation: true
+          ring:
+            rx: 256
+            tx: 256
+        accept-all-mac-addresses: false
+        ethernet:
+          auto-negotiation: false
+        type: ethernet
+      - ipv4:
+          address: []
+          dhcp: false
+          enabled: false
+        ipv6:
+          address: []
+          autoconf: false
+          dhcp: false
+          enabled: false
+        bridge:
+          port: []
+        name: br1-intervm
+        lldp:
+          enabled: false
+        mtu: 1500
+        state: up
+        type: linux-bridge
+        description: Linux bridge with no ports

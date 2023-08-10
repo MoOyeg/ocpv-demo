@@ -1,0 +1,5 @@
+resources:
+ - datasource.yaml
+ - dataimportcron.yaml
+
+namespace: default

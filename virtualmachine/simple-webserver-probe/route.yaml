@@ -1,0 +1,12 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: centos-webserver
+spec:
+  to:
+    kind: Service
+    name: centos-webserver
+    weight: 100
+  port:
+    targetPort: 80
+  wildcardPolicy: None

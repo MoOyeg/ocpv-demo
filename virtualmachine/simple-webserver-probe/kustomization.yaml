@@ -1,0 +1,7 @@
+resources:
+ - namespace.yaml
+ - vm1.yaml
+ - vm2.yaml
+ - service.yaml
+ - route.yaml
+namespace: simple-webserver-probe
