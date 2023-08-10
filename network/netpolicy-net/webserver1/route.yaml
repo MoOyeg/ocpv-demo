@@ -1,11 +1,11 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: centos-webserver
+  name: centos-webserver1
 spec:
   to:
     kind: Service
-    name: centos-webserver
+    name: centos-webserver1
     weight: 100
   port:
     targetPort: 80

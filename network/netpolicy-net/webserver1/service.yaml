@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: centos-webserver
+  name: centos-webserver1
 spec:
   ipFamilies:
     - IPv4
@@ -13,4 +13,4 @@ spec:
   ipFamilyPolicy: SingleStack
   sessionAffinity: None
   selector:
-    app: vm-webserver
+    app: centos-webserver1
