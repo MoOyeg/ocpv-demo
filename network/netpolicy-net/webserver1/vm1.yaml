@@ -46,7 +46,7 @@ spec:
         vm.kubevirt.io/workload: server
       creationTimestamp: null
       labels:
-        app: webserver1
+        app: centos-webserver1
         kubevirt.io/domain: centos-webserver1
         kubevirt.io/size: small
     spec:
