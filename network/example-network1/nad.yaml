@@ -1,8 +1,7 @@
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: inter-vm
-  namespace: default
+  name: extra-net
 spec:
   config: >-
     {"name":"inter-vm","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1-intervm","macspoofchk":false,"ipam":{}}

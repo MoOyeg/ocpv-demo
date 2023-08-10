@@ -1,7 +1,7 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: br1-enp3s0-policy-workers
+  name: extra-net-policy
 spec:
   nodeSelector:
     node-role.kubernetes.io/worker: ""
